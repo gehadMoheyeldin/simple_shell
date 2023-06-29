@@ -42,70 +42,33 @@ int _isalpha(int c)
 /**
  * _atoi - converts a string to an integer
  * @s: the string to be converted
- * Return: the converted number, or -1 on error
+ * Return: 0 if no numbers in string, converted number otherwise
  */
+
 int _atoi(char *s)
 {
-<<<<<<< HEAD
-    int i = 0, sign = 1;
-    unsigned int result = 0;
+	int i, sign = 1, flag = 0, output;
+	unsigned int result = 0;
 
-    /* Handle leading whitespace */
-    while (s[i] == ' ')
-        i++;
+	for (i = 0; s[i] != '\0' && flag != 2; i++)
+	{
+		if (s[i] == '-')
+			sign *= -1;
 
-    /* Handle sign */
-    if (s[i] == '-') {
-        sign = -1;
-        i++;
-    } else if (s[i] == '+') {
-        i++;
-    }
+		if (s[i] >= '0' && s[i] <= '9')
+		{
+			flag = 1;
+			result *= 10;
+			result += (s[i] - '0');
+		}
+		else if (flag == 1)
+			flag = 2;
+	}
 
-    /* Handle digits */
-    for (; s[i] != '\0'; i++) {
-        if (s[i] < '0' || s[i] > '9')
-            break;
+	if (sign == -1)
+		output = -result;
+	else
+		output = result;
 
-        /* Check for overflow */
-        if (result > INT_MAX / 10 ||
-            (result == INT_MAX / 10 && (s[i] - '0') > (INT_MAX % 10))) {
-            return -1;
-        }
-
-        result = result * 10 + (s[i] - '0');
-    }
-
-    /* Check for trailing non-numeric characters */
-    for (; s[i] != '\0'; i++) {
-        if (s[i] != ' ')
-            return -1;
-    }
-
-    return sign * result;
-=======
-        int i, sign = 1, flag = 0, output;
-        unsigned int result = 0;
-
-        for (i = 0; s[i] != '\0' && flag != 2; i++)
-        {
-                if (s[i] == '-')
-                        sign *= -1;
-
-                if (s[i] >= '0' && s[i] <= '9')
-                {
-                        flag = 1;
-                        result *= 10;
-                        result += (s[i] - '0');
-                }
-                else if (flag == 1)
-                        flag = 2;
-        }
-
-        if (sign == -1)
-                output = -result;
-        else
-                output = result;
-
-        return (output);
+	return (output);
 }
