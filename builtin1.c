@@ -2,10 +2,10 @@
 
 /**
  * _myhistory - displays the history list, one command by line, preceded
- *              with line numbers, starting at 0.
- * @info: pointer to a structure containing potential arguments. Used to maintain
- *           constant function prototype.
- *  Return: Always returns 0.
+ *	with line numbers,starting at 0
+ * @info: pointer to a structure containing potential arguments. Used
+ *	to maintain  constant function prototype.
+ * Return: Always returns 0.
  */
 int _myhistory(info_t *info)
 {
@@ -46,11 +46,13 @@ int unset_alias(info_t *info, char *str)
 int set_alias(info_t *info, char *str)
 {
 	char *p;
+
 	p = _strchr(str, '=');
 	if (!p)
-return (1);
+	return (1);
 	if (!*++p)
-		return (unset_alias(info, str));
+
+	return (unset_alias(info, str));
 
 	unset_alias(info, str);
 	return (add_node_end(&(info->alias), str, 0) == NULL);
