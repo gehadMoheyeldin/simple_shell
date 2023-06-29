@@ -1,3 +1,5 @@
+getLine.c code
+
 #include "shell.h"
 
 /**
@@ -11,7 +13,7 @@
 ssize_t input_buf(info_t *info, char **buf, size_t *len)
 {
 	ssize_t r = 0;
-	static const size_t len_p = 0;
+	size_t len_p = 0;
 
 	if (!*len) /* if nothing left in the buffer, fill it */
 	{
@@ -121,7 +123,7 @@ int _getline(info_t *info, char **ptr, size_t *length)
 {
 	static char buf[READ_BUF_SIZE];
 	static size_t i, len;
-	size_tk;
+	size_t k;
 	ssize_t r = 0, s = 0;
 	char *p = NULL, *new_p = NULL, *c;
 
@@ -162,7 +164,7 @@ int _getline(info_t *info, char **ptr, size_t *length)
  *
  * Return: void
  */
-void sigintHandler(const int sig_num)
+void sigintHandler(__attribute__((unused))int sig_num)
 {
 	_puts("\n");
 	_puts("$ ");
